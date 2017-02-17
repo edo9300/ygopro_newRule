@@ -1,6 +1,5 @@
-forked from https://github.com/soarqin/ygopro
-
-only tested for vs, probably has mistake on other platforms
+This is only a temp version for new rules.
+This repository will be deleted when this version is finished.
 
 ###HOW TO BUILD
 
