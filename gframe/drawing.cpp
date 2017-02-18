@@ -231,7 +231,7 @@ void Game::DrawBackGround() {
 }
 void Game::DrawCards() {
 	for(int p = 0; p < 2; ++p) {
-		for(int i = 0; i < 5; ++i)
+		for(int i = 0; i < 6; ++i)
 			if(dField.mzone[p][i])
 				DrawCard(dField.mzone[p][i]);
 		for(int i = 0; i < 8; ++i)
