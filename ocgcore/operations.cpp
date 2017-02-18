@@ -4363,7 +4363,7 @@ int32 field::select_synchro_material(int16 step, uint8 playerid, card* pcard, in
 			}
 		} else {
 			for(uint8 p = 0; p < 2; ++p) {
-				for(int32 i = 0; i < 5; ++i) {
+				for(int32 i = 0; i < 6; ++i) {
 					card* tuner = player[p].list_mzone[i];
 					if(check_tuner_material(pcard, tuner, -2, -1, min, max, smat, mg))
 						core.select_cards.push_back(tuner);
@@ -4467,7 +4467,7 @@ int32 field::select_synchro_material(int16 step, uint8 playerid, card* pcard, in
 			}
 		} else {
 			for(uint8 np = 0; np < 2; ++np) {
-				for(int32 i = 0; i < 5; ++i) {
+				for(int32 i = 0; i < 6; ++i) {
 					card* pm = player[np].list_mzone[i];
 					if(pm && pm != tuner && pm != smat && pm->is_position(POS_FACEUP) && pm->is_can_be_synchro_material(pcard, tuner)) {
 						if(pcheck)

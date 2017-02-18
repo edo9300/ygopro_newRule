@@ -1248,7 +1248,7 @@ int32 scriptlib::duel_change_attack_target(lua_State *L) {
 			|| !target && !attacker->is_affected_by_effect(EFFECT_CANNOT_DIRECT_ATTACK)) {
 		pduel->game_field->core.attack_target = target;
 		pduel->game_field->core.attack_rollback = FALSE;
-		for(uint32 i = 0; i < 5; ++i) {
+		for(uint32 i = 0; i < 6; ++i) {
 			if(pduel->game_field->player[1 - turnp].list_mzone[i])
 				pduel->game_field->core.opp_mzone[i] = pduel->game_field->player[1 - turnp].list_mzone[i]->fieldid_r;
 			else

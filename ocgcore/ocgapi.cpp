@@ -224,7 +224,7 @@ extern "C" DECL_DLLEXPORT int32 query_field_count(ptr pduel, uint8 playerid, uin
 		return ptduel->game_field->player[playerid].list_main.size();
 	if(location == LOCATION_MZONE) {
 		uint32 count = 0;
-		for(uint32 i = 0; i < 5; ++i)
+		for(uint32 i = 0; i < 6; ++i)
 			if(ptduel->game_field->player[playerid].list_mzone[i]) count++;
 		return count;
 	}
@@ -244,7 +244,7 @@ extern "C" DECL_DLLEXPORT int32 query_field_card(ptr pduel, uint8 playerid, uint
 	uint32 ct = 0, clen;
 	byte* p = buf;
 	if(location == LOCATION_MZONE) {
-		for(uint32 i = 0; i < 5; ++i) {
+		for(uint32 i = 0; i < 6; ++i) {
 			pcard = ptduel->game_field->player[playerid].list_mzone[i];
 			if(pcard) {
 				ct += clen = pcard->get_infos(p, query_flag, use_cache);
@@ -293,7 +293,7 @@ extern "C" DECL_DLLEXPORT int32 query_field_info(ptr pduel, byte* buf) {
 	for(int playerid = 0; playerid < 2; ++playerid) {
 		*((int*)(buf)) = ptduel->game_field->player[playerid].lp;
 		buf += 4;
-		for(uint32 i = 0; i < 5; ++i) {
+		for(uint32 i = 0; i < 6; ++i) {
 			pcard = ptduel->game_field->player[playerid].list_mzone[i];
 			if(pcard) {
 				*buf++ = 1;

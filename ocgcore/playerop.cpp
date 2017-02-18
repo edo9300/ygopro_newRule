@@ -507,7 +507,7 @@ int32 field::select_counter(uint16 step, uint8 playerid, uint16 countertype, uin
 		core.select_cards.clear();
 		for(int p = 0; p < 2; ++p) {
 			if(avail) {
-				for(int j = 0; j < 5; ++j) {
+				for(int j = 0; j < 6; ++j) {
 					pcard = player[fp].list_mzone[j];
 					if(pcard && pcard->get_counter(countertype)) {
 						core.select_cards.push_back(pcard);

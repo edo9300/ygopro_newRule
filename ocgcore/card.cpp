@@ -2310,7 +2310,7 @@ void card::get_unique_target(card_set* cset, int32 controler) {
 			continue;
 		const auto& player = pduel->game_field->player[controler ^ p];
 		if(unique_location & LOCATION_MZONE) {
-			for(int32 i = 0; i < 5; ++i) {
+			for(int32 i = 0; i < 6; ++i) {
 				card* pcard = player.list_mzone[i];
 				if(pcard && pcard->is_position(POS_FACEUP) && !pcard->is_status(STATUS_BATTLE_DESTROYED)
 					&& check_unique_code(pcard))
