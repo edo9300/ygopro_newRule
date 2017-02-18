@@ -1325,11 +1325,12 @@ int DuelClient::ClientAnalyze(char * msg, unsigned int len) {
 			}
 			if(!pzone) {
 				if(mainGame->chkRandomPos->isChecked()) {
-					respbuf[2] = rnd.real() * 5;
+					respbuf[2] = rnd.real() * 6;
 					while(!(filter & (1 << respbuf[2])))
-						respbuf[2] = rnd.real() * 5;
+						respbuf[2] = rnd.real() * 6;
 				} else {
-					if (filter & 0x4) respbuf[2] = 2;
+					if (filter & 0x20) respbuf[2] = 5;
+					else if (filter & 0x4) respbuf[2] = 2;
 					else if (filter & 0x2) respbuf[2] = 1;
 					else if (filter & 0x8) respbuf[2] = 3;
 					else if (filter & 0x1) respbuf[2] = 0;

@@ -95,9 +95,16 @@ void Game::DrawBackGround() {
 	if(dInfo.curMsg == MSG_SELECT_PLACE || dInfo.curMsg == MSG_SELECT_DISFIELD) {
 		float cv[4] = {0.0f, 0.0f, 1.0f, 1.0f};
 		unsigned int filter = 0x1;
-		for (int i = 0; i < 5; ++i, filter <<= 1) {
+		for (int i = 0; i < 6; ++i, filter <<= 1) {
 			if (dField.selectable_field & filter)
-				DrawSelectionLine(&matManager.vFields[16 + i * 4], !(dField.selected_field & filter), 2, cv);
+				if (i == 5)
+				{
+					DrawSelectionLine(&matManager.vFields[144], !(dField.selected_field & filter), 2, cv);
+				}
+				else 
+				{
+					DrawSelectionLine(&matManager.vFields[16 + i * 4], !(dField.selected_field & filter), 2, cv);
+				}
 		}
 		filter = 0x100;
 		for (int i = 0; i < 8; ++i, filter <<= 1) {
@@ -105,9 +112,16 @@ void Game::DrawBackGround() {
 				DrawSelectionLine(&matManager.vFields[36 + i * 4], !(dField.selected_field & filter), 2, cv);
 		}
 		filter = 0x10000;
-		for (int i = 0; i < 5; ++i, filter <<= 1) {
+		for (int i = 0; i < 6; ++i, filter <<= 1) {
 			if (dField.selectable_field & filter)
-				DrawSelectionLine(&matManager.vFields[84 + i * 4], !(dField.selected_field & filter), 2, cv);
+				if (i == 5)
+				{
+					DrawSelectionLine(&matManager.vFields[140], !(dField.selected_field & filter), 2, cv);
+				}
+				else
+				{
+					DrawSelectionLine(&matManager.vFields[84 + i * 4], !(dField.selected_field & filter), 2, cv);
+				}
 		}
 		filter = 0x1000000;
 		for (int i = 0; i < 8; ++i, filter <<= 1) {
@@ -119,10 +133,19 @@ void Game::DrawBackGround() {
 	{
 		/*float cv[4] = {0.0f, 0.0f, 1.0f, 1.0f};*/
 		unsigned int filter = 0x1;
-		for (int i = 0; i < 5; ++i, filter <<= 1) {
+		for (int i = 0; i < 6; ++i, filter <<= 1) {
 			if (dField.disabled_field & filter) {
-				driver->draw3DLine(matManager.vFields[16 + i * 4].Pos, matManager.vFields[16 + i * 4 + 3].Pos, 0xffffffff);
-				driver->draw3DLine(matManager.vFields[16 + i * 4 + 1].Pos, matManager.vFields[16 + i * 4 + 2].Pos, 0xffffffff);
+				if (i==5)
+				{
+					driver->draw3DLine(matManager.vFields[144].Pos, matManager.vFields[144 + 3].Pos, 0xffffffff);
+					driver->draw3DLine(matManager.vFields[144 + 1].Pos, matManager.vFields[144 + 2].Pos, 0xffffffff);
+				}
+				else 
+				{
+					driver->draw3DLine(matManager.vFields[16 + i * 4].Pos, matManager.vFields[16 + i * 4 + 3].Pos, 0xffffffff);
+					driver->draw3DLine(matManager.vFields[16 + i * 4 + 1].Pos, matManager.vFields[16 + i * 4 + 2].Pos, 0xffffffff);
+				}
+
 			}
 		}
 		filter = 0x100;
@@ -133,10 +156,18 @@ void Game::DrawBackGround() {
 			}
 		}
 		filter = 0x10000;
-		for (int i = 0; i < 5; ++i, filter <<= 1) {
+		for (int i = 0; i < 6; ++i, filter <<= 1) {
 			if (dField.disabled_field & filter) {
-				driver->draw3DLine(matManager.vFields[84 + i * 4].Pos, matManager.vFields[84 + i * 4 + 3].Pos, 0xffffffff);
-				driver->draw3DLine(matManager.vFields[84 + i * 4 + 1].Pos, matManager.vFields[84 + i * 4 + 2].Pos, 0xffffffff);
+				if (i == 5)
+				{
+					driver->draw3DLine(matManager.vFields[140].Pos, matManager.vFields[140 + 3].Pos, 0xffffffff);
+					driver->draw3DLine(matManager.vFields[140 + 1].Pos, matManager.vFields[140 + 2].Pos, 0xffffffff);
+				}
+				else
+				{
+					driver->draw3DLine(matManager.vFields[84 + i * 4].Pos, matManager.vFields[84 + i * 4 + 3].Pos, 0xffffffff);
+					driver->draw3DLine(matManager.vFields[84 + i * 4 + 1].Pos, matManager.vFields[84 + i * 4 + 2].Pos, 0xffffffff);
+				}
 			}
 		}
 		filter = 0x1000000;
