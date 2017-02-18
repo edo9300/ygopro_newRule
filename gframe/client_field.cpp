@@ -25,7 +25,7 @@ ClientField::ClientField() {
 	deck_reversed = false;
 	conti_selecting = false;
 	for(int p = 0; p < 2; ++p) {
-		for(int i = 0; i < 5; ++i)
+		for(int i = 0; i < 6; ++i)
 			mzone[p].push_back(0);
 		for(int i = 0; i < 8; ++i)
 			szone[p].push_back(0);

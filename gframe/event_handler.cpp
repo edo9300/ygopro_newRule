@@ -1931,7 +1931,7 @@ bool ClientField::OnEvent(const irr::SEvent& event) {
 						break;
 					case irr::KEY_F4:
 						loc_id = 1007;
-						for(int32 i = 0; i <= 4 ; ++i) {
+						for(int32 i = 0; i <= 5 ; ++i) {
 							if(mzone[0][i] && mzone[0][i]->overlayed.size()) {
 								for(int32 j = 0; j <= (int32)mzone[0][i]->overlayed.size() - 1 ; ++j)
 									display_cards.push_back(mzone[0][i]->overlayed[j]);
@@ -1955,7 +1955,7 @@ bool ClientField::OnEvent(const irr::SEvent& event) {
 						break;
 					case irr::KEY_F8:
 						loc_id = 1007;
-						for(int32 i = 0; i <= 4 ; ++i) {
+						for(int32 i = 0; i <= 5 ; ++i) {
 							if(mzone[1][i] && mzone[1][i]->overlayed.size()) {
 								for(int32 j = 0; j <= (int32)mzone[1][i]->overlayed.size() - 1 ; ++j)
 									display_cards.push_back(mzone[1][i]->overlayed[j]);
