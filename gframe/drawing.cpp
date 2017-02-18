@@ -448,23 +448,23 @@ void Game::DrawMisc() {
 	}
 	pcard = dField.szone[0][6];
 	if(pcard) {
-		adFont->draw(pcard->lscstring, recti(426, 394, 438, 414), 0xff000000, true, false, 0);
-		adFont->draw(pcard->lscstring, recti(427, 395, 439, 415), 0xffffffff, true, false, 0);
+		adFont->draw(pcard->rscstring, recti(500, 435, 500 + 32, 435 + 20), 0xff000000, true, false, 0);
+		adFont->draw(pcard->rscstring, recti(500 + 1, 435 + 1, 500 + 32 + 1, 435 + 20 + 1), 0xffffffff, true, false, 0);
 	}
 	pcard = dField.szone[0][7];
 	if(pcard) {
-		adFont->draw(pcard->rscstring, recti(880, 394, 912, 414), 0xff000000, true, false, 0);
-		adFont->draw(pcard->rscstring, recti(881, 395, 913, 415), 0xffffffff, true, false, 0);
+		adFont->draw(pcard->rscstring, recti(790, 435, 790 + 32, 435 + 20), 0xff000000, true, false, 0);
+		adFont->draw(pcard->rscstring, recti(790 + 1, 435 + 1, 790 + 32 + 1, 435 + 20 + 1), 0xffffffff, true, false, 0);
 	}
 	pcard = dField.szone[1][6];
 	if(pcard) {
-		adFont->draw(pcard->lscstring, recti(839, 245, 871, 265), 0xff000000, true, false, 0);
-		adFont->draw(pcard->lscstring, recti(840, 246, 872, 266), 0xffffffff, true, false, 0);
+		adFont->draw(pcard->rscstring, recti(755, 220, 755 + 32, 220 + 20), 0xff000000, true, false, 0);
+		adFont->draw(pcard->rscstring, recti(755 + 1, 220 + 1, 755 + 32 + 1, 220 + 20 + 1), 0xffffffff, true, false, 0);
 	}
 	pcard = dField.szone[1][7];
 	if(pcard) {
-		adFont->draw(pcard->rscstring, recti(463, 245, 495, 265), 0xff000000, true, false, 0);
-		adFont->draw(pcard->rscstring, recti(464, 246, 496, 266), 0xffffffff, true, false, 0);
+		adFont->draw(pcard->rscstring, recti(548, 220, 548+32, 220+20), 0xff000000, true, false, 0);
+		adFont->draw(pcard->rscstring, recti(548 + 1, 220 + 1, 548 + 32 + 1, 220 + 20 + 1), 0xffffffff, true, false, 0);
 	}
 	if(dField.extra[0].size()) {
 		int offset = (dField.extra[0].size() >= 10) ? 0 : mainGame->textFont->getDimension(dataManager.GetNumString(1)).Width;
