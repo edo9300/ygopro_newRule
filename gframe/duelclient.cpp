@@ -1296,10 +1296,10 @@ int DuelClient::ClientAnalyze(char * msg, unsigned int len) {
 		mainGame->stHintMsg->setVisible(true);
 		if (mainGame->dInfo.curMsg == MSG_SELECT_PLACE && mainGame->chkAutoPos->isChecked()) {
 			unsigned int filter;
-			if (mainGame->dField.selectable_field & 0x1f) {
+			if (mainGame->dField.selectable_field & 0x3f) {
 				respbuf[0] = mainGame->dInfo.isFirst ? 0 : 1;
 				respbuf[1] = 0x4;
-				filter = mainGame->dField.selectable_field & 0x1f;
+				filter = mainGame->dField.selectable_field & 0x3f;
 			} else if (mainGame->dField.selectable_field & 0x1f00) {
 				respbuf[0] = mainGame->dInfo.isFirst ? 0 : 1;
 				respbuf[1] = 0x8;
@@ -1309,10 +1309,10 @@ int DuelClient::ClientAnalyze(char * msg, unsigned int len) {
 				respbuf[1] = 0x8;
 				filter = (mainGame->dField.selectable_field >> 14) & 0x3;
 				pzone = 1;
-			} else if (mainGame->dField.selectable_field & 0x1f0000) {
+			} else if (mainGame->dField.selectable_field & 0x3f0000) {
 				respbuf[0] = mainGame->dInfo.isFirst ? 1 : 0;
 				respbuf[1] = 0x4;
-				filter = (mainGame->dField.selectable_field >> 16) & 0x1f;
+				filter = (mainGame->dField.selectable_field >> 16) & 0x3f;
 			} else if (mainGame->dField.selectable_field & 0x1f000000) {
 				respbuf[0] = mainGame->dInfo.isFirst ? 1 : 0;
 				respbuf[1] = 0x8;

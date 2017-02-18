@@ -1346,7 +1346,7 @@ bool ClientField::OnEvent(const irr::SEvent& event) {
 			}
 			case MSG_SELECT_PLACE:
 			case MSG_SELECT_DISFIELD: {
-				if (!(hovered_location & LOCATION_ONFIELD) || hovered_sequence == 5)
+				if (!(hovered_location & LOCATION_ONFIELD) || (hovered_sequence == 5 && hovered_location != LOCATION_MZONE) || (hovered_sequence == 6 && hovered_location == LOCATION_MZONE))
 					break;
 				unsigned int flag = 1 << (hovered_sequence + (hovered_controler << 4) + ((hovered_location == LOCATION_MZONE) ? 0 : 8));
 				if (flag & selectable_field) {
@@ -1360,7 +1360,7 @@ bool ClientField::OnEvent(const irr::SEvent& event) {
 							unsigned char respbuf[80];
 							int filter = 1;
 							int p = 0;
-							for (int i = 0; i < 5; ++i, filter <<= 1) {
+							for (int i = 0; i < 6; ++i, filter <<= 1) {
 								if (selected_field & filter) {
 									respbuf[p] = mainGame->LocalPlayer(0);
 									respbuf[p + 1] = 0x4;
@@ -1378,7 +1378,7 @@ bool ClientField::OnEvent(const irr::SEvent& event) {
 								}
 							}
 							filter = 0x10000;
-							for (int i = 0; i < 5; ++i, filter <<= 1) {
+							for (int i = 0; i < 6; ++i, filter <<= 1) {
 								if (selected_field & filter) {
 									respbuf[p] = mainGame->LocalPlayer(1);
 									respbuf[p + 1] = 0x4;
