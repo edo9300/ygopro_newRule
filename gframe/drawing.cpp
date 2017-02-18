@@ -52,17 +52,6 @@ void Game::DrawBackGround() {
 	matrix4 im = irr::core::IdentityMatrix;
 	im.setTranslation(vector3df(0, 0, -0.01f));
 	driver->setTransform(irr::video::ETS_WORLD, im);
-	//dark shade
-//	matManager.mSelField.AmbientColor = 0xff000000;
-//	matManager.mSelField.DiffuseColor = 0xa0000000;
-//	driver->setMaterial(matManager.mSelField);
-//	for(int i = 0; i < 120; i += 4)
-//		driver->drawVertexPrimitiveList(&matManager.vFields[i], 4, matManager.iRectangle, 2);
-//	driver->setTransform(irr::video::ETS_WORLD, irr::core::IdentityMatrix);
-//	driver->setMaterial(matManager.mBackLine);
-//	driver->drawVertexPrimitiveList(matManager.vBackLine, 76, matManager.iBackLine, 58, irr::video::EVT_STANDARD, irr::scene::EPT_LINES);
-	//draw field
-	//draw field spell card
 	driver->setTransform(irr::video::ETS_WORLD, irr::core::IdentityMatrix);
 	int fieldcode1 = -1;
 	int fieldcode2 = -1;
@@ -163,14 +152,32 @@ void Game::DrawBackGround() {
 		int index = 0;
 		if (dField.hovered_controler == 0) {
 			if (dField.hovered_location == LOCATION_DECK) index = 0;
-			else if (dField.hovered_location == LOCATION_MZONE) index = 16 + dField.hovered_sequence * 4;
+			else if (dField.hovered_location == LOCATION_MZONE) { 
+				if (dField.hovered_sequence == 5)
+				{
+					index = 144;
+				}
+				else 
+				{
+					index = 16 + dField.hovered_sequence * 4;
+				}
+			}
 			else if (dField.hovered_location == LOCATION_SZONE) index = 36 + dField.hovered_sequence * 4;
 			else if (dField.hovered_location == LOCATION_GRAVE) index = 4;
 			else if (dField.hovered_location == LOCATION_REMOVED) index = 12;
 			else if (dField.hovered_location == LOCATION_EXTRA) index = 8;
 		} else {
 			if (dField.hovered_location == LOCATION_DECK) index = 68;
-			else if (dField.hovered_location == LOCATION_MZONE) index = 84 + dField.hovered_sequence * 4;
+			else if (dField.hovered_location == LOCATION_MZONE) {
+				if (dField.hovered_sequence == 5)
+				{
+					index = 140;
+				}
+				else
+				{
+					index = 84 + dField.hovered_sequence * 4;
+				}
+			}
 			else if (dField.hovered_location == LOCATION_SZONE) index = 104 + dField.hovered_sequence * 4;
 			else if (dField.hovered_location == LOCATION_GRAVE) index = 72;
 			else if (dField.hovered_location == LOCATION_REMOVED) index = 80;

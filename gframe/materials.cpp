@@ -361,6 +361,16 @@ Materials::Materials() {
 	vFields[138] = S3DVertex(vector3df(1.0f, 1.3f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
 	vFields[139] = S3DVertex(vector3df(0.2f, 1.3f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
 
+	//link1
+	vFields[140] = S3DVertex(vector3df(2.3f, -0.6f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
+	vFields[141] = S3DVertex(vector3df(3.4f, -0.6f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
+	vFields[142] = S3DVertex(vector3df(2.3f, 0.6f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
+	vFields[143] = S3DVertex(vector3df(3.4f, 0.6f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
+	//link2
+	vFields[144] = S3DVertex(vector3df(4.5f, -0.6f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
+	vFields[145] = S3DVertex(vector3df(5.6f, -0.6f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
+	vFields[146] = S3DVertex(vector3df(4.5f, 0.6f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
+	vFields[147] = S3DVertex(vector3df(5.6f, 0.6f, 0.0f), vector3df(0, 0, 1), SColor(255, 255, 255, 255), vector2df(0, 0));
 
 	for(int i = 0; i < 40; ++i)
 		iArrow[i] = i;

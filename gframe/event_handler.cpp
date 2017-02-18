@@ -2154,6 +2154,24 @@ void ClientField::GetHoverField(int x, int y) {
 					hovered_sequence--;
 				}
 			}
+			else if (boardx >= matManager.vFields[140].Pos.X && boardx <= matManager.vFields[143].Pos.X) //link 1
+			{
+				if (boardy >= matManager.vFields[140].Pos.Y && boardy <= matManager.vFields[143].Pos.Y) 
+				{
+					hovered_controler = 1;
+					hovered_location = LOCATION_MZONE;
+					hovered_sequence = 5;
+				}
+			}
+			else if (boardx >= matManager.vFields[144].Pos.X && boardx <= matManager.vFields[147].Pos.X) //link 2
+			{
+				if (boardy >= matManager.vFields[144].Pos.Y && boardy <= matManager.vFields[147].Pos.Y)
+				{
+					hovered_controler = 0;
+					hovered_location = LOCATION_MZONE;
+					hovered_sequence = 5;
+				}
+			}
 		}
 	}
 }
