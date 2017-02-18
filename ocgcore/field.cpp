@@ -501,8 +501,8 @@ int32 field::get_useable_count(uint8 playerid, uint8 location, uint8 uplayer, ui
 	uint32 used_flag = player[playerid].used_location;
 	effect_set eset;
 	if (location == LOCATION_MZONE) {
-		flag = (flag & 0x1f);
-		used_flag = (used_flag & 0x1f);
+		flag = (flag & 0x3f);
+		used_flag = (used_flag & 0x3f);
 		if(uplayer < 2)
 			filter_player_effect(playerid, EFFECT_MAX_MZONE, &eset);
 	} else {

@@ -3496,7 +3496,7 @@ int32 field::send_to(uint16 step, group * targets, effect * reason_effect, uint3
 		card* pcard = *param->cvit;
 		uint32 flag;
 		get_useable_count(pcard->current.controler, LOCATION_SZONE, pcard->current.controler, LOCATION_REASON_TOFIELD, &flag);
-		flag = ((flag << 8) & 0xff00) | 0xffffe0ff;
+		flag = ((flag << 8) & 0xff00) | 0xffffc0ff;
 		add_process(PROCESSOR_SELECT_PLACE, 0, 0, 0, pcard->current.controler, flag, 1);
 		return FALSE;
 	}
@@ -3864,7 +3864,7 @@ int32 field::move_to_field(uint16 step, card * target, uint32 enable, uint32 ret
 				else
 					flag = ((flag << 16) & 0xff0000) | 0xff00ffff;
 			}
-			flag |= 0xe0e0e0e0;
+			flag |= 0xc0c0c0c0;
 			add_process(PROCESSOR_SELECT_PLACE, 0, 0, 0, move_player, flag, 1);
 		}
 		return FALSE;

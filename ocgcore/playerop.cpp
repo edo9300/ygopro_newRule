@@ -369,6 +369,7 @@ int32 field::select_place(uint16 step, uint8 playerid, uint32 flag, uint8 count)
 				else if(filter & 0x8) returns.bvalue[2] = 3;
 				else if(filter & 0x1) returns.bvalue[2] = 0;
 				else if(filter & 0x10) returns.bvalue[2] = 4;
+				else if (filter & 0x20) returns.bvalue[2] = 5;
 			} else {
 				if(filter & 0x1) returns.bvalue[2] = 6;
 				else if(filter & 0x2) returns.bvalue[2] = 7;
