@@ -1094,16 +1094,28 @@ void ClientField::GetCardLocation(ClientCard* pcard, irr::core::vector3df* t, ir
 		}
 		int oseq = pcard->overlayTarget->sequence;
 		if (pcard->overlayTarget->controler == 0) {
-			t->X = (matManager.vFields[16].Pos.X + matManager.vFields[17].Pos.X) / 2 + 1.1f * oseq - 0.12f + 0.06f * sequence;
-			t->Y = (matManager.vFields[16].Pos.Y + matManager.vFields[18].Pos.Y) / 2 + 0.05f;
-			t->Z = 0.005f + pcard->sequence * 0.0001f;
+			if (oseq == 5) {
+				t->X = (matManager.vFields[144].Pos.X + matManager.vFields[145].Pos.X) / 2 - 0.12f + 0.06f * sequence;
+				t->Y = (matManager.vFields[144].Pos.Y + matManager.vFields[146].Pos.Y) / 2 + 0.05f;
+				t->Z = 0.005f + pcard->sequence * 0.0001f;
+			} else {
+				t->X = (matManager.vFields[16].Pos.X + matManager.vFields[17].Pos.X) / 2 + 1.1f * oseq - 0.12f + 0.06f * sequence;
+				t->Y = (matManager.vFields[16].Pos.Y + matManager.vFields[18].Pos.Y) / 2 + 0.05f;
+				t->Z = 0.005f + pcard->sequence * 0.0001f;
+			}
 			r->X = 0.0f;
 			r->Y = 0.0f;
 			r->Z = 0.0f;
 		} else {
-			t->X = (matManager.vFields[84].Pos.X + matManager.vFields[85].Pos.X) / 2 - 1.1f * oseq + 0.12f - 0.06f * sequence;
-			t->Y = (matManager.vFields[84].Pos.Y + matManager.vFields[86].Pos.Y) / 2 - 0.05f;
-			t->Z = 0.005f + pcard->sequence * 0.0001f;
+			if (oseq == 5) {
+				t->X = (matManager.vFields[140].Pos.X + matManager.vFields[141].Pos.X) / 2 + 0.12f - 0.06f * sequence;
+				t->Y = (matManager.vFields[140].Pos.Y + matManager.vFields[142].Pos.Y) / 2 - 0.05f;
+				t->Z = 0.005f + pcard->sequence * 0.0001f;
+			} else {
+				t->X = (matManager.vFields[84].Pos.X + matManager.vFields[85].Pos.X) / 2 - 1.1f * oseq + 0.12f - 0.06f * sequence;
+				t->Y = (matManager.vFields[84].Pos.Y + matManager.vFields[86].Pos.Y) / 2 - 0.05f;
+				t->Z = 0.005f + pcard->sequence * 0.0001f;
+			}
 			r->X = 0.0f;
 			r->Y = 0.0f;
 			r->Z = 3.1415926f;
