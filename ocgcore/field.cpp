@@ -15,7 +15,7 @@
 #include <cstring>
 #include <map>
 
-int32 field::field_used_count[32] = {0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5};
+int32 field::field_used_count[64] = {0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6};
 
 bool chain::chain_operation_sort(const chain& c1, const chain& c2) {
 	return c1.triggering_effect->id < c2.triggering_effect->id;
@@ -515,6 +515,8 @@ int32 field::get_useable_count(uint8 playerid, uint8 location, uint8 uplayer, ui
 		*list = flag;
 	if(eset.size()) {
 		int32 max = 5;
+		if (location == LOCATION_MZONE)
+			max = 6;
 		for (int32 i = 0; i < eset.size(); ++i) {
 			pduel->lua->add_param(playerid, PARAM_TYPE_INT);
 			pduel->lua->add_param(uplayer, PARAM_TYPE_INT);
@@ -524,10 +526,15 @@ int32 field::get_useable_count(uint8 playerid, uint8 location, uint8 uplayer, ui
 				max = v;
 		}
 		int32 block = 5 - field_used_count[flag];
+		if (location == LOCATION_MZONE)
+			block = 6 - field_used_count[flag];
 		int32 limit = max - field_used_count[used_flag];
 		return block < limit ? block : limit;
 	} else {
-		return 5 - field_used_count[flag];
+		if (location == LOCATION_MZONE)
+			return 6 - field_used_count[flag];
+		else
+			return 5 - field_used_count[flag];
 	}
 }
 void field::shuffle(uint8 playerid, uint8 location) {

@@ -4829,15 +4829,15 @@ void field::refresh_location_info_instant() {
 	filter_field_effect(EFFECT_DISABLE_FIELD, &eset);
 	for (int32 i = 0; i < eset.size(); ++i) {
 		value = eset[i]->get_value();
-		player[0].disabled_location |= value & 0x1f1f;
-		player[1].disabled_location |= (value >> 16) & 0x1f1f;
+		player[0].disabled_location |= value & 0x1f3f;
+		player[1].disabled_location |= (value >> 16) & 0x1f3f;
 	}
 	eset.clear();
 	filter_field_effect(EFFECT_USE_EXTRA_MZONE, &eset);
 	for (int32 i = 0; i < eset.size(); ++i) {
 		p = eset[i]->get_handler_player();
 		value = eset[i]->get_value();
-		player[p].disabled_location |= (value >> 16) & 0x1f;
+		player[p].disabled_location |= (value >> 16) & 0x3f;
 	}
 	eset.clear();
 	filter_field_effect(EFFECT_USE_EXTRA_SZONE, &eset);
@@ -4868,8 +4868,8 @@ int32 field::refresh_location_info(uint16 step) {
 		for (int32 i = 0; i < eset.size(); ++i) {
 			value = eset[i]->get_value();
 			if(value) {
-				player[0].disabled_location |= value & 0x1f1f;
-				player[1].disabled_location |= (value >> 16) & 0x1f1f;
+				player[0].disabled_location |= value & 0x1f3f;
+				player[1].disabled_location |= (value >> 16) & 0x1f3f;
 			} else
 				core.disfield_effects.add_item(eset[i]);
 		}
@@ -4878,8 +4878,8 @@ int32 field::refresh_location_info(uint16 step) {
 		for (int32 i = 0; i < eset.size(); ++i) {
 			p = eset[i]->get_handler_player();
 			value = eset[i]->get_value();
-			player[p].disabled_location |= (value >> 16) & 0x1f;
-			if((uint32)field_used_count[(value >> 16) & 0x1f] < (value & 0xffff))
+			player[p].disabled_location |= (value >> 16) & 0x3f;
+			if((uint32)field_used_count[(value >> 16) & 0x3f] < (value & 0xffff))
 				core.extram_effects.add_item(eset[i]);
 		}
 		eset.clear();
@@ -4911,17 +4911,17 @@ int32 field::refresh_location_info(uint16 step) {
 		return FALSE;
 	}
 	case 2: {
-		returns.ivalue[0] &= 0x1f1f1f1f;
+		returns.ivalue[0] &= 0x1f3f1f3f;
 		if(returns.ivalue[0] == 0)
 			returns.ivalue[0] = 0x80;
 		if(core.units.begin()->peffect->get_handler_player() == 0) {
 			core.units.begin()->peffect->value = returns.ivalue[0];
-			player[0].disabled_location |= returns.ivalue[0] & 0x1f1f;
-			player[1].disabled_location |= (returns.ivalue[0] >> 16) & 0x1f1f;
+			player[0].disabled_location |= returns.ivalue[0] & 0x1f3f;
+			player[1].disabled_location |= (returns.ivalue[0] >> 16) & 0x1f3f;
 		} else {
 			core.units.begin()->peffect->value = ((returns.ivalue[0] << 16) | (returns.ivalue[0] >> 16));
-			player[1].disabled_location |= returns.ivalue[0] & 0x1f1f;
-			player[0].disabled_location |= (returns.ivalue[0] >> 16) & 0x1f1f;
+			player[1].disabled_location |= returns.ivalue[0] & 0x1f3f;
+			player[0].disabled_location |= (returns.ivalue[0] >> 16) & 0x1f3f;
 		}
 		core.units.begin()->step = 0;
 		return FALSE;
@@ -4936,14 +4936,14 @@ int32 field::refresh_location_info(uint16 step) {
 		core.units.begin()->peffect = peffect;
 		core.extram_effects.remove_item(0);
 		uint32 p = peffect->get_handler_player();
-		uint32 mzone_flag = (player[p].disabled_location | player[p].used_location) & 0x1f;
-		if(mzone_flag == 0x1f) {
+		uint32 mzone_flag = (player[p].disabled_location | player[p].used_location) & 0x3f;
+		if(mzone_flag == 0x3f) {
 			core.units.begin()->step = 4;
 			return FALSE;
 		}
 		int32 val = peffect->get_value();
-		int32 dis_count = (val & 0xffff) - field_used_count[(val >> 16) & 0x1f];
-		int32 empty_count = 5 - field_used_count[mzone_flag];
+		int32 dis_count = (val & 0xffff) - field_used_count[(val >> 16) & 0x3f];
+		int32 empty_count = 6 - field_used_count[mzone_flag];
 		uint32 flag = mzone_flag | 0xffffff00;
 		if(dis_count > empty_count)
 			dis_count = empty_count;

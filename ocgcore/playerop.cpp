@@ -336,10 +336,10 @@ int32 field::select_place(uint16 step, uint8 playerid, uint32 flag, uint8 count)
 			flag = ~flag;
 			int32 filter;
 			int32 pzone = 0;
-			if(flag & 0x1f) {
+			if(flag & 0x3f) {
 				returns.bvalue[0] = 1;
 				returns.bvalue[1] = LOCATION_MZONE;
-				filter = flag & 0x1f;
+				filter = flag & 0x3f;
 			} else if(flag & 0x1f00) {
 				returns.bvalue[0] = 1;
 				returns.bvalue[1] = LOCATION_SZONE;
@@ -349,10 +349,10 @@ int32 field::select_place(uint16 step, uint8 playerid, uint32 flag, uint8 count)
 				returns.bvalue[1] = LOCATION_SZONE;
 				filter = (flag >> 14) & 0x3;
 				pzone = 1;
-			} else if(flag & 0x1f0000) {
+			} else if(flag & 0x3f0000) {
 				returns.bvalue[0] = 0;
 				returns.bvalue[1] = LOCATION_MZONE;
-				filter = (flag >> 16) & 0x1f;
+				filter = (flag >> 16) & 0x3f;
 			} else if(flag & 0x1f000000) {
 				returns.bvalue[0] = 0;
 				returns.bvalue[1] = LOCATION_SZONE;
