@@ -66,6 +66,7 @@ struct query_cache {
 	uint32 type;
 	uint32 level;
 	uint32 rank;
+	uint32 link;
 	uint32 attribute;
 	uint32 race;
 	int32 attack;
@@ -178,6 +179,7 @@ public:
 	int32 get_defense();
 	uint32 get_level();
 	uint32 get_rank();
+	uint32 get_link();
 	uint32 get_synchro_level(card* pcard);
 	uint32 get_ritual_level(card* pcard);
 	uint32 check_xyz_level(card* pcard, uint32 lv);
@@ -343,6 +345,7 @@ public:
 #define TYPE_XYZ			0x800000	//
 #define TYPE_PENDULUM		0x1000000	//
 #define TYPE_SPSUMMON		0x2000000	//
+#define TYPE_LINK			0x4000000	//
 
 //Attributes
 #define ATTRIBUTE_EARTH		0x01		//
@@ -473,6 +476,7 @@ public:
 #define QUERY_IS_PUBLIC		0x100000
 #define QUERY_LSCALE		0x200000
 #define QUERY_RSCALE		0x400000
+#define QUERY_LINK			0x800000
 
 #define ASSUME_CODE			1
 #define ASSUME_TYPE			2

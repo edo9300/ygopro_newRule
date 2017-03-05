@@ -35,6 +35,7 @@ ClientCard::ClientCard() {
 	base_defense = 0;
 	lscale = 0;
 	rscale = 0;
+	link = 0;
 	cHint = 0;
 	chValue = 0;
 	atkstring[0] = 0;
@@ -85,6 +86,13 @@ void ClientCard::UpdateInfo(char* buf) {
 		if(pdata && rank != (unsigned int)pdata) {
 			rank = pdata;
 			myswprintf(lvstring, L"R%d", rank);
+		}
+	}
+	if(flag & QUERY_LINK) {
+		pdata = BufferIO::ReadInt32(buf);
+		if (link != (unsigned int)pdata) {
+			link = pdata;
+			myswprintf(lvstring, L"L%d", link);
 		}
 	}
 	if(flag & QUERY_ATTRIBUTE)

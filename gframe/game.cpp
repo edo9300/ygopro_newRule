@@ -1021,17 +1021,25 @@ void Game::ShowCardInfo(int code) {
 		stInfo->setText(formatBuffer);
 		int form = 0x2605;
 		if(cd.type & TYPE_XYZ) ++form;
-		myswprintf(formatBuffer, L"[%c%d] ", form, cd.level);
-		wchar_t adBuffer[16];
-		if(cd.attack < 0 && cd.defense < 0)
-			myswprintf(adBuffer, L"?/?");
-		else if(cd.attack < 0)
-			myswprintf(adBuffer, L"?/%d", cd.defense);
-		else if(cd.defense < 0)
-			myswprintf(adBuffer, L"%d/?", cd.attack);
-		else
-			myswprintf(adBuffer, L"%d/%d", cd.attack, cd.defense);
-		wcscat(formatBuffer, adBuffer);
+		if(cd.type & TYPE_LINK){
+			if (cd.attack < 0)
+				myswprintf(formatBuffer, L"?/Link %d", cd.level);
+			else
+				myswprintf(formatBuffer, L"%d/Link %d", cd.attack, cd.level);
+		}
+		else {
+			myswprintf(formatBuffer, L"[%c%d] ", form, cd.level);
+			wchar_t adBuffer[16];
+			if (cd.attack < 0 && cd.defense < 0)
+				myswprintf(adBuffer, L"?/?");
+			else if (cd.attack < 0)
+				myswprintf(adBuffer, L"?/%d", cd.defense);
+			else if (cd.defense < 0)
+				myswprintf(adBuffer, L"%d/?", cd.attack);
+			else
+				myswprintf(adBuffer, L"%d/%d", cd.attack, cd.defense);
+			wcscat(formatBuffer, adBuffer);
+		}
 		if(cd.type & TYPE_PENDULUM) {
 			wchar_t scaleBuffer[16];
 			myswprintf(scaleBuffer, L"   %d/%d", cd.lscale, cd.rscale);

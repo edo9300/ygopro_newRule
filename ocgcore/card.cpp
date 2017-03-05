@@ -105,6 +105,7 @@ uint32 card::get_infos(byte* buf, int32 query_flag, int32 use_cache) {
 		if(query_flag & QUERY_TYPE) q_cache.type = *p++ = get_type();
 		if(query_flag & QUERY_LEVEL) q_cache.level = *p++ = get_level();
 		if(query_flag & QUERY_RANK) q_cache.rank = *p++ = get_rank();
+		if(query_flag & QUERY_LINK) q_cache.link = *p++ = get_link();
 		if(query_flag & QUERY_ATTRIBUTE) q_cache.attribute = *p++ = get_attribute();
 		if(query_flag & QUERY_RACE) q_cache.race = *p++ = get_race();
 		if(query_flag & QUERY_ATTACK) q_cache.attack = *p++ = get_attack();
@@ -129,6 +130,10 @@ uint32 card::get_infos(byte* buf, int32 query_flag, int32 use_cache) {
 			q_cache.rank = tdata;
 			*p++ = tdata;
 		} else query_flag &= ~QUERY_RANK;
+		if ((query_flag & QUERY_LINK) && ((uint32)(tdata = get_link()) != q_cache.link)) {
+			q_cache.link = tdata;
+			*p++ = tdata;
+		} else query_flag &= ~QUERY_LINK;
 		if((query_flag & QUERY_ATTRIBUTE) && ((uint32)(tdata = get_attribute()) != q_cache.attribute)) {
 			q_cache.attribute = tdata;
 			*p++ = tdata;
@@ -887,6 +892,21 @@ uint32 card::get_rank() {
 		rank = 1;
 	temp.level = 0xffffffff;
 	return rank;
+}
+uint32 card::get_link() {
+	if (!(data.type & TYPE_LINK) || (status & STATUS_NO_LEVEL))
+		return 0;
+	if (!(current.location & LOCATION_MZONE))
+		return data.level;
+	if (temp.level != 0xffffffff)
+		return temp.level;
+	effect_set effects;
+	int32 link = data.level;
+	temp.level = link;
+	if (link < 1 && (get_type() & TYPE_MONSTER))
+		link = 1;
+	temp.level = 0xffffffff;
+	return link;
 }
 uint32 card::get_synchro_level(card* pcard) {
 	if((data.type & TYPE_XYZ) || (status & STATUS_NO_LEVEL))
